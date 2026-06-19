@@ -1,0 +1,27 @@
+
+services:
+  laravel-app:
+    image: laravel-app:1.0
+    build:
+      context: .
+    container_name: laravel-app
+    ports:
+      - "80:80" 
+    environment:
+      - ADMIN_ROLE_NAME=administrator
+      - CLIENT_ROLE_NAME=client
+    depends_on:
+      - mysql-db
+
+  mysql-db:
+    image: mysql:5.7
+    container_name: mysql-db
+    environment:
+      - MYSQL_CONNECTION=mysql
+      - MYSQL_HOST=mysql-db
+      - MYSQL_PORT=3306
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=homestead
+      - MYSQL_USER=homestead
+      - MYSQL_PASSWORD=secret
+
